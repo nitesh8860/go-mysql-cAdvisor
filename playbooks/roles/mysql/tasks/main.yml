@@ -1,0 +1,25 @@
+---
+# tasks file for mysql
+- name: create database directory
+  command: mkdir -p $PWD/docker/mysql/
+
+- name: run mysql containers
+  docker_container:
+      name: db
+      image: mysql
+      state: started
+      detach: True
+      volumes:
+         - $PWD/:/home/
+         - $PWD/docker/mysql/:/var/lib/mysql
+      env:
+          MYSQL_ROOT_PASSWORD: "{{ mysql_root_pass }}"
+
+- name: copy Database creation scripts
+  command: docker cp mysql.sql db:/home/mysql.sql
+
+- name: create database directory
+  command: mkdir -p $PWD/docker/mysql/
+
+- name: run Database creation scripts
+  command: docker exec db mysql -uroot -p"{{ mysql_root_pass }}" mysql < /home/mysql.sql

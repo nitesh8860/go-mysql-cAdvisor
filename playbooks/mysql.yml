@@ -1,0 +1,8 @@
+---
+
+- hosts: ec2_go
+  become: yes
+  become_method: sudo
+  roles:
+      - common
+      - mysql

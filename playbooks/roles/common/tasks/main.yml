@@ -1,0 +1,18 @@
+---
+# tasks file for common
+
+- name: install docker and git
+  yum:
+      name: "{{ item }}"
+      state: present
+  with_items:
+       - docker
+       - git
+  notify:
+       - start docker
+- name: download required docker images
+  docker_image:
+    name: "{{ item }}"
+  with_items:
+       - mysql
+       - google/cadvisor:latest

@@ -1,0 +1,8 @@
+---
+
+- hosts: localhost
+  become: yes
+  roles:
+     - aws
+- include: common.yml
+- include: mysql.yml

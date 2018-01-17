@@ -1,0 +1,29 @@
+---
+# tasks file for goapp
+- name: create directory for go app code
+  command: mkdir -p $PWD/goAppCode
+
+- name: pull code from go web app repository
+  git:
+    repo: "{{ goapp_git_repo}}"
+    dest: $PWD/goAppCode/
+
+- name: move DockerFile to goAppCode
+  command: mv ./DockerFile $PWD/goAppCode/gowebapp/
+
+- name: create image from DockerFile
+  docker_image:
+    name: goapp
+    dockerfile: present
+    path: $PWD/goAppCode/gowebapp/
+
+- name: run go app containers
+  docker_container:
+      name: go
+      image: goapp
+      state: started
+      detach: True
+      link:
+         - db
+      port:
+          "80:80"

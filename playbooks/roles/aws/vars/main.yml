@@ -1,0 +1,9 @@
+---
+# vars file for aws
+
+ec2_access_key: "AKIAJLO2Z2NQNC6WWCPA"
+ec2_secret_key: "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"
+ami_id: "ami-cb9ec1b1"
+instance_type: "t2.micro"
+subnet_id: "subnet-76fca93d"
+exact_count_of_vms: 1

@@ -1,0 +1,14 @@
+#Mysql
+mysql_root_pass=test
+
+#goApp
+goapp_git_repo="https://github.com/josephsp urrier/gowebapp.git"
+
+#AWS
+ec2_access_key=
+ec2_secret_key=
+aws_region=
+instance_type=
+ami_id=
+exact_count_of_vms=
+subnet_id=
